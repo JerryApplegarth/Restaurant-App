@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 fun RestaurantIcon(
 	icon: ImageVector,
 	modifier: Modifier,
-	onClick: () -> Unit = {}) {
+	onClick: () -> Unit = { }) {
 	Image(
 		imageVector = icon,
 		contentDescription = "Restaurant icon",

@@ -19,6 +19,9 @@ fun RestaurantDetails(title: String, description: String, modifier: Modifier) {
 			text = title,
 			style = MaterialTheme.typography.h6
 			)
+		CompositionLocalProvider(LocalContentAlpha provides  ContentAlpha.medium) {
+
+		}
 		Spacer(modifier = Modifier.height(6.dp))
 		Text(
 			text = description,
