@@ -17,10 +17,13 @@ import com.applecompose.data.model.Restaurant
 
 
 @Composable
-fun RestaurantItem(item: Restaurant) {
+fun RestaurantItem(
+	item: Restaurant,
+	onClick: (id: Int) -> Unit
+	) {
 
-	val favoriteState = remember { mutableStateOf(false) }
-	val icon = if (favoriteState.value) {
+
+	val icon = if (item.isFavorite) {
 		Icons.Filled.Favorite
 	}else {
 		Icons.Filled.FavoriteBorder
@@ -37,7 +40,7 @@ fun RestaurantItem(item: Restaurant) {
 			RestaurantIcon(Icons.Filled.Face, Modifier.weight(0.15f))
 			RestaurantDetails(item.title, item.description, Modifier.weight(0.70f))
 			RestaurantIcon(icon, Modifier.weight(0.15f)) {
-				favoriteState.value = !favoriteState.value
+				onClick(item.id)
 			}
 		}
 	}
