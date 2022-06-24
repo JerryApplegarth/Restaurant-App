@@ -5,8 +5,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -15,6 +18,14 @@ import com.applecompose.data.model.Restaurant
 
 @Composable
 fun RestaurantItem(item: Restaurant) {
+
+	val favoriteState = remember { mutableStateOf(false) }
+	val icon = if (favoriteState.value) {
+		Icons.Filled.Favorite
+	}else {
+		Icons.Filled.FavoriteBorder
+	}
+
 	Card(
 		elevation = 4.dp,
 		modifier = Modifier.padding(8.dp)
@@ -24,8 +35,10 @@ fun RestaurantItem(item: Restaurant) {
 			modifier = Modifier.padding(8.dp)
 		) {
 			RestaurantIcon(Icons.Filled.Face, Modifier.weight(0.15f))
-			RestaurantDetails(item.title, item.description, Modifier.weight(0.75f))
-			FavoriteIcon(Modifier.weight(0.15f))
+			RestaurantDetails(item.title, item.description, Modifier.weight(0.70f))
+			RestaurantIcon(icon, Modifier.weight(0.15f)) {
+				favoriteState.value = !favoriteState.value
+			}
 		}
 	}
 }
