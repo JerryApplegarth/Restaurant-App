@@ -15,6 +15,7 @@ import com.applecompose.restaurantsapp.ui.theme.RestaurantsAppTheme
 @Composable
 fun RestaurantsScreen() {
 	val viewModel: RestaurantsViewModel = viewModel()
+	viewModel.getRestaurants()
 
 	LazyColumn(
 		contentPadding = PaddingValues(
