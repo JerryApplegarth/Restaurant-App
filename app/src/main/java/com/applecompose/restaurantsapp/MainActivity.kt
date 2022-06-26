@@ -3,7 +3,15 @@ package com.applecompose.restaurantsapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.applecompose.restaurantsapp.presentation.screens.RestaurantDetailsScreen
 import com.applecompose.restaurantsapp.presentation.screens.RestaurantsScreen
 import com.applecompose.restaurantsapp.ui.theme.RestaurantsAppTheme
@@ -17,8 +25,7 @@ class MainActivity : ComponentActivity() {
 				Surface(
 					color = MaterialTheme.colors.background
 				) {
-					//RestaurantsScreen()
-					RestaurantDetailsScreen()
+					RestaurantsApp()
 				}
 
 			}
@@ -26,5 +33,24 @@ class MainActivity : ComponentActivity() {
 	}
 }
 
+@Composable
+private fun RestaurantsApp() {
+	val navController = rememberNavController()
+	NavHost(navController, startDestination = "restaurants") {
+		composable(route = "restaurants") {
+			RestaurantsScreen { id ->
+				navController.navigate("restaurants/$id")
+			}
+		}
+		composable(
+			route = "restaurants/{restaurant_id}",
+			arguments = listOf(navArgument("restaurant_id") {
+				type = NavType.IntType
+			}),
+			deepLinks = listOf(navDeepLink { uriPattern =
+				"www.restaurantsapp.details.com/{restaurant_id}" }),
+		) { RestaurantDetailsScreen() }
+	}
+}
 
 

@@ -13,7 +13,7 @@ import com.applecompose.restaurantsapp.presentation.components.RestaurantItem
 import com.applecompose.restaurantsapp.ui.theme.RestaurantsAppTheme
 
 @Composable
-fun RestaurantsScreen() {
+fun RestaurantsScreen(onItemClick: (id: Int) -> Unit) {
 	val viewModel: RestaurantsViewModel = viewModel()
 	LazyColumn(
 		contentPadding = PaddingValues(
@@ -22,18 +22,11 @@ fun RestaurantsScreen() {
 		)
 	) {
 		items(viewModel.state.value) { restaurant ->
-			RestaurantItem(restaurant) { id ->
-				viewModel.toggleFavorite(id)
-			}
+			RestaurantItem(restaurant,
+				onFavoriteClick = { id -> viewModel.toggleFavorite(id) },
+				onItemClick = { id -> onItemClick(id) })
 		}
 	}
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-	RestaurantsAppTheme {
-		RestaurantsScreen()
-	}
-}
