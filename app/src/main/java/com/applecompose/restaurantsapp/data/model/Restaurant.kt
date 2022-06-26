@@ -1,4 +1,4 @@
-package com.applecompose.data.model
+package com.applecompose.restaurantsapp.data.model
 
 import com.google.gson.annotations.SerializedName
 
