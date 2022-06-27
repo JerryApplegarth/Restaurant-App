@@ -9,17 +9,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun RestaurantIcon(
-	icon: ImageVector,
-	modifier: Modifier,
-	onClick: () -> Unit = { }) {
+fun RestaurantIcon(icon: ImageVector, modifier: Modifier, onClick: () -> Unit = { }) {
 	Image(
 		imageVector = icon,
 		contentDescription = "Restaurant icon",
 		modifier = modifier
 			.padding(8.dp)
-			.clickable {
-				onClick()
-			}
-	)
+			.clickable { onClick() })
 }

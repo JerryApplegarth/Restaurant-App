@@ -37,3 +37,4 @@ class RestaurantDetailsViewModel(private val stateHandle: SavedStateHandle): Vie
 		}
 	}
 }
+

@@ -16,6 +16,7 @@ import com.applecompose.restaurantsapp.presentation.screens.RestaurantDetailsScr
 import com.applecompose.restaurantsapp.presentation.screens.RestaurantsScreen
 import com.applecompose.restaurantsapp.ui.theme.RestaurantsAppTheme
 
+
 class MainActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -52,5 +53,3 @@ private fun RestaurantsApp() {
 		) { RestaurantDetailsScreen() }
 	}
 }
-
-
